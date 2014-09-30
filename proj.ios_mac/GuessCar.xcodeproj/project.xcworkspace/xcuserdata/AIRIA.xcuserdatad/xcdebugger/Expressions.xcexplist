@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GuessScene::showCarInfo():GuessScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "GameManager::getInstance()-&gt;getSelectLevel()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "operator():GuessScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "targetFontVec">
+            </PersistentString>
+            <PersistentString
+               value = "targetBF-&gt;getText()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DecodeTexture::onEnter():DecodeTexture.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "FileUtils::getInstance()-&gt;getWritablePath()+spriteFrameName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "operator():BaseSprite.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "GameManager::getInstance()-&gt;getIsScroll()==false">
+            </PersistentString>
+            <PersistentString
+               value = "GameManager::getInstance()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "operator():SelectLevelScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "iconNode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GuessScene::init():GuessScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "targetFontVec">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
