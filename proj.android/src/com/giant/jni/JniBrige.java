@@ -1,9 +1,6 @@
 package com.giant.jni;
 
-import net.youmi.android.banner.AdSize;
-import net.youmi.android.banner.AdView;
-import net.youmi.android.spot.SpotDialogListener;
-import net.youmi.android.spot.SpotManager;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,9 +10,12 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
+import com.baidu.mobads.AdView;
+import com.baidu.mobads.AdViewListener;
+import com.baidu.mobads.IconsAd;
 import com.giant.net.NetManager;
 
 public class JniBrige {
@@ -52,8 +52,9 @@ public class JniBrige {
 
 					@Override
 					public void run() {
-						SpotManager.getInstance(JniBrige.this.context)
-								.loadSpotAds();
+						/* 轮盘广告 */
+						IconsAd iconsAd = new IconsAd(JniBrige.this.context);
+						iconsAd.loadAd(JniBrige.this.context);
 					}
 				});
 
@@ -83,13 +84,66 @@ public class JniBrige {
 			public void run() {
 				if(!showAds)
 					return;
-				FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
-						FrameLayout.LayoutParams.MATCH_PARENT,
-						FrameLayout.LayoutParams.WRAP_CONTENT);
+				RelativeLayout layout = new RelativeLayout(context);
+				// 创建广告View
+				AdView adView = new AdView(context);
+				// 设置监听器
+				adView.setListener(new AdViewListener() {
+					public void onAdSwitch() {
+						Log.w("", "onAdSwitch");
+					}
 
-				layoutParams.gravity = Gravity.BOTTOM | Gravity.CENTER;
-				AdView adView = new AdView(context, AdSize.FIT_SCREEN);
-				context.addContentView(adView, layoutParams);
+					public void onAdShow(JSONObject info) {
+						Log.w("", "onAdShow " + info.toString());
+					}
+
+					public void onAdReady(AdView adView) {
+						Log.w("", "onAdReady " + adView);
+					}
+
+					public void onAdFailed(String reason) {
+						Log.w("", "onAdFailed " + reason);
+					}
+
+					public void onAdClick(JSONObject info) {
+						Log.w("", "onAdClick " + info.toString());
+					}
+
+					public void onVideoStart() {
+						Log.w("", "onVideoStart");
+					}
+
+					public void onVideoFinish() {
+						Log.w("", "onVideoFinish");
+					}
+
+					@Override
+					public void onVideoClickAd() {
+						Log.w("", "onVideoFinish");
+					}
+
+					@Override
+					public void onVideoClickClose() {
+						Log.w("", "onVideoFinish");
+					}
+
+					@Override
+					public void onVideoClickReplay() {
+						Log.w("", "onVideoFinish");
+					}
+
+					@Override
+					public void onVideoError() {
+						Log.w("", "onVideoFinish");
+					}
+				});
+				
+				context.addContentView(layout, new LayoutParams(LayoutParams.MATCH_PARENT,
+						LayoutParams.MATCH_PARENT));
+				RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+				layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+				layout.addView(adView, layoutParams);
 			}
 
 		});
@@ -100,26 +154,7 @@ public class JniBrige {
 		context.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (SpotManager.getInstance(context).checkLoadComplete()) {
-					Log.v("Youmi", "invoke showspotads");
-					SpotManager.getInstance(context).showSpotAds(context,
-							new SpotDialogListener() {
-								@Override
-								public void onShowSuccess() {
-									Log.i("Youmi", "onShowSuccess");
-								}
-
-								@Override
-								public void onShowFailed() {
-									Log.i("Youmi", "onShowFailed");
-								}
-
-								@Override
-								public void onSpotClosed() {
-									Log.e("sdkDemo", "closed");
-								}
-							});
-				}
+				
 
 			}
 		});

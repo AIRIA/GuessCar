@@ -26,22 +26,20 @@ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.cpp;
 
-import net.youmi.android.AdManager;
-
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import android.os.Bundle;
 
+import com.baidu.mobads.IconsAd;
 import com.giant.jni.JniBrige;
 
 public class AppActivity extends Cocos2dxActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		JniBrige.getInstance().init(this);
-		AdManager.getInstance(this).init("71baae658db1a5e4",
-				"d7b79ebf44662a8d", false);
 		super.onCreate(savedInstanceState);
-	}
+		JniBrige.getInstance().init(this);
+		
 
+	}
 }
