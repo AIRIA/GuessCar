@@ -1,13 +1,11 @@
 package com.giant.jni;
 
-import net.youmi.android.banner.AdSize;
-import net.youmi.android.banner.AdView;
-import net.youmi.android.spot.SpotDialogListener;
-import net.youmi.android.spot.SpotManager;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import y.u.w.br.Ywaj;
+import y.u.w.br.Ywam;
+import y.u.w.st.Ywbv;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -52,8 +50,7 @@ public class JniBrige {
 
 					@Override
 					public void run() {
-						SpotManager.getInstance(JniBrige.this.context)
-								.loadSpotAds();
+						Ywbv.uax(JniBrige.this.context).ubj();
 					}
 				});
 
@@ -83,12 +80,17 @@ public class JniBrige {
 			public void run() {
 				if(!showAds)
 					return;
-				FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
-						FrameLayout.LayoutParams.MATCH_PARENT,
-						FrameLayout.LayoutParams.WRAP_CONTENT);
+				// 实例化 LayoutParams（重要）
+				FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams( FrameLayout.LayoutParams.FILL_PARENT,
+				    FrameLayout.LayoutParams.WRAP_CONTENT);
 
-				layoutParams.gravity = Gravity.BOTTOM | Gravity.CENTER;
-				AdView adView = new AdView(context, AdSize.FIT_SCREEN);
+				// 设置广告条的悬浮位置
+				layoutParams.gravity = Gravity.BOTTOM | Gravity.RIGHT; // 这里示例为右下角
+
+				// 实例化广告条
+				Ywam adView = new Ywam(context, Ywaj.FIT_SCREEN);
+
+				    // 调用 Activity 的 addContentView 函数
 				context.addContentView(adView, layoutParams);
 			}
 
@@ -100,25 +102,9 @@ public class JniBrige {
 		context.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (SpotManager.getInstance(context).checkLoadComplete()) {
+				if (Ywbv.uax(context).uac()) {
 					Log.v("Youmi", "invoke showspotads");
-					SpotManager.getInstance(context).showSpotAds(context,
-							new SpotDialogListener() {
-								@Override
-								public void onShowSuccess() {
-									Log.i("Youmi", "onShowSuccess");
-								}
-
-								@Override
-								public void onShowFailed() {
-									Log.i("Youmi", "onShowFailed");
-								}
-
-								@Override
-								public void onSpotClosed() {
-									Log.e("sdkDemo", "closed");
-								}
-							});
+					Ywbv.uax(context).ucs(context);
 				}
 
 			}

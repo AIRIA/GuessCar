@@ -30,19 +30,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- YouMi -->
         <activity
-            android:name="net.youmi.android.AdBrowser"
+            android:name="y.u.w.Ywaa"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
 
         <service
-            android:name="net.youmi.android.AdService"
+            android:name="y.u.w.Ywai"
             android:exported="false" >
         </service>
 
-        <receiver android:name="net.youmi.android.AdReceiver" >
+        <receiver android:name="y.u.w.Ywah" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
 
@@ -51,8 +50,8 @@
         </receiver>
 
         <provider
-            android:name="net.youmi.android.spot.SpotAdContentProvider"
-            android:authorities="com.giant.fuck.xiaomi.fuck.fuck" />
+            android:name="y.u.w.st.Ywbt"
+            android:authorities="com.giant.fuck.fuck.xiaomi" />
     </application>
 
     <supports-screens
